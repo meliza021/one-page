@@ -13,7 +13,7 @@ const translations = {
         addProjectTitle: "Agregar Nuevo Proyecto",
         projectTitleLabel: "Título del Proyecto:",
         projectDescLabel: "Descripción:",
-        projectImgLabel: "URL de la Imagen:",
+        projectImgLabel: "Imagen del Proyecto:",
         projectGithubLabel: "URL del Repositorio (GitHub):",
         addProjectBtn: "Agregar Proyecto",
         noteInputLabel: "¿Cómo te sientes hoy?",
@@ -47,7 +47,7 @@ const translations = {
         addProjectTitle: "Add New Project",
         projectTitleLabel: "Project Title:",
         projectDescLabel: "Description:",
-        projectImgLabel: "Image URL:",
+        projectImgLabel: "Project Image:",
         projectGithubLabel: "GitHub Repository URL:",
         addProjectBtn: "Add Project",
         noteInputLabel: "How are you feeling today?",
@@ -81,7 +81,7 @@ const translations = {
         addProjectTitle: "Adicionar Novo Projeto",
         projectTitleLabel: "Título do Projeto:",
         projectDescLabel: "Descrição:",
-        projectImgLabel: "URL da Imagem:",
+        projectImgLabel: "Imagem do Projeto:",
         projectGithubLabel: "URL do Repositório (GitHub):",
         addProjectBtn: "Adicionar Projeto",
         noteInputLabel: "Como você se sente hoje?",
@@ -96,7 +96,7 @@ const translations = {
         sendMessageBtn: "Enviar Mensagem",
         copyright: "🌸 Desenhado e desenvolvido por Meliza Ardila — 2025 🌸",
         privacyPolicy: "Política de Privacidade",
-        terms: "Termos de Uso",
+        terms: "Términos de Uso",
         skillsTitle: "Minhas Habilidades",
         techSkillsTitle: "Tecnologias",
         designSkillsTitle: "Design"
@@ -188,26 +188,32 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const title = document.getElementById('projectTitle').value;
         const description = document.getElementById('projectDescription').value;
-        const imageUrl = document.getElementById('projectImageUrl').value;
+        const imageFile = document.getElementById('projectImage').files[0]; // Obtener el archivo cargado
         const githubUrl = document.getElementById('projectGithubUrl').value;
 
-        if (title && description && imageUrl && githubUrl) {
-            const newProject = document.createElement('div');
-            newProject.classList.add('project-item');
-            newProject.innerHTML = `
-                <img src="<span class="math-inline">\{imageUrl\}" alt\="</span>{title}" class="project-image">
-                <div class="project-content">
-                    <h3 class="project-title"><span class="math-inline">\{title\}</h3\>
-<p class\="project\-description"\></span>{description}</p>
-                    <div class="project-links">
-                        <a href="${githubUrl}" target="_blank" class="project-link">
-                            <i class="fab fa-github"></i> GitHub
-                        </a>
+        if (title && description && imageFile && githubUrl) {
+            const reader = new FileReader(); // Para leer el archivo como URL
+            reader.onload = function(event) {
+                const imageUrl = event.target.result; // La URL de la imagen
+
+                const newProject = document.createElement('div');
+                newProject.classList.add('project-item');
+                newProject.innerHTML = `
+                    <img src="${imageUrl}" alt="${title}" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">${title}</h3>
+                        <p class="project-description">${description}</p>
+                        <div class="project-links">
+                            <a href="${githubUrl}" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
                     </div>
-                </div>
-            `;
-            projectList.appendChild(newProject);
-            addProjectForm.reset(); // Limpiar el formulario
+                `;
+                projectList.appendChild(newProject);
+                addProjectForm.reset();
+            };
+            reader.readAsDataURL(imageFile); // Leer el archivo como URL
         } else {
             alert('Por favor, completa todos los campos del proyecto.');
         }
@@ -319,28 +325,3 @@ document.addEventListener('DOMContentLoaded', () => {
     // Llama a updateChart inicialmente para mostrar datos (si hay alguno)
     updateChart();
 });
-document.getElementById('noteForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const note = document.getElementById('noteInput').value;
-        const moodEmoji = document.getElementById('moodEmoji').value; // Obtener el emoji
-        if(note.trim() !== "") {
-            const noteDisplay = document.getElementById('noteDisplay');
-            const newNote = document.createElement('div'); // Usar un div para mejor estructura
-            newNote.classList.add('note-card'); // Agregar la clase .note-card
-            newNote.innerHTML = `
-                <div class="note-header">
-                    <span class="note-emoji">${moodEmoji}</span>
-                </div>
-                <p class="note-content">${note}</p>
-                <div class="note-meta">
-                    <span>${new Date().toLocaleDateString()}</span>
-                    <span>${new Date().toLocaleTimeString()}</span>
-                </div>
-            `;
-            noteDisplay.prepend(newNote);
-            document.getElementById('noteInput').value = "";
-            updateChart(); // Actualiza el gráfico después de agregar la nota
-        }
-    });
-
-    newNote.innerHTML = `<p>¡Nota publicada!</p>`;

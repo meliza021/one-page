@@ -78,8 +78,7 @@
         <section id="projects" class="section-container">
             <h2 id="projects-title">Mis Proyectos</h2>
             <div class="project-list" id="project-list">
-                <!-- Los proyectos se mostrarán aquí dinámicamente -->
-            </div>
+                </div>
             <form id="addProjectForm" class="add-form">
                 <h3 id="add-project-title">Agregar Nuevo Proyecto</h3>
                 <div class="form-group">
@@ -91,8 +90,8 @@
                     <textarea id="projectDescription" name="projectDescription" required></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="projectImageUrl" id="project-img-label">URL de la Imagen:</label>
-                    <input type="url" id="projectImageUrl" name="projectImageUrl" required>
+                    <label for="projectImage" id="project-img-label">Imagen del Proyecto:</label>
+                    <input type="file" id="projectImage" name="projectImage" accept="image/*" required>
                 </div>
                 <div class="form-group">
                     <label for="projectGithubUrl" id="project-github-label">URL del Repositorio (GitHub):</label>
@@ -126,8 +125,7 @@
                     <button type="submit" id="publish">Publicar Nota</button>
                 </form>
                 <div id="noteDisplay" class="notes-display">
-                    <!-- Las notas se mostrarán aquí dinámicamente -->
-                </div>
+                    </div>
             </div>
         </section>
 
