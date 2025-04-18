@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portafolio Kawaii</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1 id="title">¡Hola, soy [Tu Nombre]!</h1>
+        <div class="language-switcher">
+            <button onclick="setLanguage('es')">🇪🇸</button>
+            <button onclick="setLanguage('en')">🇬🇧</button>
+            <button onclick="setLanguage('pt')">🇧🇷</button>
+        </div>
+    </header>
+
+    <section id="about">
+        <img src="tu-foto.jpg" alt="Tu Foto" class="profile-pic">
+        <div class="bio">
+            <h2 id="about-title">Sobre mí</h2>
+            <p id="about-text">
+                ¡Hola! Soy una persona creativa, curiosa y siempre lista para aprender cosas nuevas. 
+                Amo el diseño, la programación y crear ideas que hagan feliz a la gente 💖.
+            </p>
+        </div>
+    </section>
+
+    <nav>
+        <a href="#projects" id="nav-projects">Proyectos</a>
+        <a href="#notes" id="nav-notes">Notas</a>
+        <a href="#contact" id="nav-contact">Contacto</a>
+    </nav>
+
+    <section id="projects">
+        <h2 id="projects-title">Mis Proyectos</h2>
+        <div class="project-list">
+            <div class="project-item">Proyecto 1</div>
+            <div class="project-item">Proyecto 2</div>
+        </div>
+    </section>
+
+    <section id="notes">
+        <h2 id="notes-title">Notas del día</h2>
+        <form id="noteForm">
+            <textarea id="noteInput" placeholder="¿Cómo te sientes hoy?"></textarea>
+            <button type="submit" id="publish">Publicar Nota</button>
+        </form>
+        <div id="noteDisplay"></div>
+    </section>
+
+    <section id="contact">
+        <h2 id="contact-title">Contacto</h2>
+        <p id="contact-text">¡Escríbeme para colaborar o saludar! 💌</p>
+    </section>
+
+    <footer>
+        <p>🌸 Diseñado por [Tu Nombre] — 2025 🌸</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
