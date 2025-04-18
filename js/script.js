@@ -107,7 +107,7 @@ function setLanguage(lang) {
     console.log(`Intentando traducir a: ${lang}`);
     console.log(`Traducciones disponibles:`, Object.keys(translations));
 
-    // Header
+    
     document.getElementById('title').innerText = translations[lang]?.title || translations['es'].title;
     document.getElementById('nav-about').innerText = translations[lang]?.navAbout || translations['es'].navAbout;
     document.getElementById('nav-skills').innerText = translations[lang]?.navSkills || translations['es'].navSkills;
@@ -115,11 +115,11 @@ function setLanguage(lang) {
     document.getElementById('nav-notes').innerText = translations[lang]?.navNotes || translations['es'].navNotes;
     document.getElementById('nav-contact').innerText = translations[lang]?.navContact || translations['es'].navContact;
 
-    // About Section
+    
     document.getElementById('about-title').innerText = translations[lang]?.aboutTitle || translations['es'].aboutTitle;
     document.getElementById('about-text').innerText = translations[lang]?.aboutText || translations['es'].aboutText;
 
-    // Skills Section
+    
     const skillsTitleElement = document.getElementById('skills-title');
     if (skillsTitleElement) {
         skillsTitleElement.innerText = translations[lang]?.skillsTitle || translations['es'].skillsTitle;
@@ -141,7 +141,7 @@ function setLanguage(lang) {
         console.log("No se encontró el elemento con ID: design-skills-title");
     }
 
-    // Projects Section
+    
     document.getElementById('projects-title').innerText = translations[lang]?.projectsTitle || translations['es'].projectsTitle;
     document.getElementById('add-project-title').innerText = translations[lang]?.addProjectTitle || translations['es'].addProjectTitle;
     document.getElementById('project-title-label').innerText = translations[lang]?.projectTitleLabel || translations['es'].projectTitleLabel;
@@ -150,16 +150,16 @@ function setLanguage(lang) {
     document.getElementById('project-github-label').innerText = translations[lang]?.projectGithubLabel || translations['es'].projectGithubLabel;
     document.getElementById('add-project-btn').innerText = translations[lang]?.addProjectBtn || translations['es'].addProjectBtn;
 
-    // Notes Section
+   
     document.getElementById('notes-title').innerText = translations[lang]?.notesTitle || translations['es'].notesTitle;
     document.getElementById('note-input-label').innerText = translations[lang]?.noteInputLabel || translations['es'].noteInputLabel;
     document.getElementById('mood-emoji-label').innerText = translations[lang]?.moodEmojiLabel || translations['es'].moodEmojiLabel;
     document.getElementById('publish').innerText = translations[lang]?.publish || translations['es'].publish;
 
-    // Analytics Section
+   
     document.getElementById('analytics-title').innerText = translations[lang]?.analyticsTitle || translations['es'].analyticsTitle;
 
-    // Contact Section
+    
     document.getElementById('contact-title').innerText = translations[lang]?.contactTitle || translations['es'].contactTitle;
     document.getElementById('contact-text').innerText = translations[lang]?.contactText || translations['es'].contactText;
     document.getElementById('contact-name-label').innerText = translations[lang]?.contactNameLabel || translations['es'].contactNameLabel;
@@ -167,7 +167,7 @@ function setLanguage(lang) {
     document.getElementById('contact-message-label').innerText = translations[lang]?.contactMessageLabel || translations['es'].contactMessageLabel;
     document.getElementById('send-message-btn').innerText = translations[lang]?.sendMessageBtn || translations['es'].sendMessageBtn;
 
-    // Footer
+    
     document.getElementById('copyright').innerText = translations[lang]?.copyright || translations['es'].copyright;
     document.getElementById('privacy-policy').innerText = translations[lang]?.privacyPolicy || translations['es'].privacyPolicy;
     document.getElementById('terms').innerText = translations[lang]?.terms || translations['es'].terms;
@@ -175,12 +175,12 @@ function setLanguage(lang) {
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM completamente cargado.");
-    setLanguage('es'); // Establecer el idioma inicial
+    setLanguage('es'); 
 
-    // Llamamos a setLanguage nuevamente al final del listener
+    
     setLanguage(document.documentElement.lang || 'es');
 
-    // Agregar funcionalidad para agregar proyectos
+    
     const addProjectForm = document.getElementById('addProjectForm');
     const projectList = document.getElementById('project-list');
 
@@ -188,13 +188,13 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const title = document.getElementById('projectTitle').value;
         const description = document.getElementById('projectDescription').value;
-        const imageFile = document.getElementById('projectImage').files[0]; // Obtener el archivo cargado
+        const imageFile = document.getElementById('projectImage').files[0]; 
         const githubUrl = document.getElementById('projectGithubUrl').value;
 
         if (title && description && imageFile && githubUrl) {
-            const reader = new FileReader(); // Para leer el archivo como URL
+            const reader = new FileReader(); 
             reader.onload = function(event) {
-                const imageUrl = event.target.result; // La URL de la imagen
+                const imageUrl = event.target.result; 
 
                 const newProject = document.createElement('div');
                 newProject.classList.add('project-item');
@@ -213,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 projectList.appendChild(newProject);
                 addProjectForm.reset();
             };
-            reader.readAsDataURL(imageFile); // Leer el archivo como URL
+            reader.readAsDataURL(imageFile); 
         } else {
             alert('Por favor, completa todos los campos del proyecto.');
         }
@@ -222,11 +222,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('noteForm').addEventListener('submit', function(e) {
         e.preventDefault();
         const note = document.getElementById('noteInput').value;
-        const moodEmoji = document.getElementById('moodEmoji').value; // Obtener el emoji
+        const moodEmoji = document.getElementById('moodEmoji').value; 
         if(note.trim() !== "") {
             const noteDisplay = document.getElementById('noteDisplay');
-            const newNote = document.createElement('div'); // Usar un div para mejor estructura
-            newNote.classList.add('note-card'); // Agregar la clase .note-card
+            const newNote = document.createElement('div'); 
+            newNote.classList.add('note-card');
             newNote.innerHTML = `
                 <div class="note-header">
                     <span class="note-emoji">${moodEmoji}</span>
@@ -239,11 +239,11 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             noteDisplay.prepend(newNote);
             document.getElementById('noteInput').value = "";
-            updateChart(); // Actualiza el gráfico después de agregar la nota
+            updateChart(); 
         }
     });
 
-    // Agregar funcionalidad para el formulario de contacto
+    
     const contactForm = document.getElementById('contactForm');
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -259,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Configuración inicial del gráfico (necesitarás Chart.js)
+    
     const ctx = document.getElementById('myChart').getContext('2d');
     const myChart = new Chart(ctx, {
         type: 'bar',
@@ -267,7 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
             labels: ['Feliz', 'Triste', 'Muy feliz', 'Llorando', 'Pensativo', 'Cansado', 'Genial', 'Asombrado'],
             datasets: [{
                 label: 'Frecuencia de estados de ánimo',
-                data: [0, 0, 0, 0, 0, 0, 0, 0], // Inicializa con ceros
+                data: [0, 0, 0, 0, 0, 0, 0, 0], 
                 backgroundColor: [
                     'rgba(255, 206, 86, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -300,7 +300,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Actualizar el gráfico con los datos de las notas
     const updateChart = () => {
         const notes = document.querySelectorAll('.note-card');
         const moodCounts = {
@@ -316,12 +315,12 @@ document.addEventListener('DOMContentLoaded', () => {
         myChart.update();
     };
 
-    // Llama a updateChart después de agregar una nueva nota
+
     document.getElementById('noteForm').addEventListener('submit', () => {
-        // (código existente para agregar la nota)
-        updateChart(); // Actualiza el gráfico después de agregar la nota
+        
+        updateChart(); 
     });
 
-    // Llama a updateChart inicialmente para mostrar datos (si hay alguno)
+    
     updateChart();
 });
